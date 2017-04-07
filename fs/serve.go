@@ -419,10 +419,8 @@ func (s *Server) Serve(fs FS) error {
 		}
 
 		s.wg.Add(1)
-		go func() {
-			defer s.wg.Done()
-			s.serve(req)
-		}()
+		s.serve(req)
+		s.wg.Done()
 	}
 	return nil
 }
